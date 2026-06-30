@@ -7,13 +7,11 @@ function decoded_msg = rs73_decode(received, all_code, all_msg)
 %   all_msg   : 与all_code一一对应的原始信息比特矩阵
 % 输出参数
 %   decoded_msg: 译码恢复后的信息矩阵，行数等于接收码字组数
-
 % 获取接收码字总组数
 [row_total, ~] = size(received);
 % 预分配译码结果存储空间
 msg_col_num = size(all_msg, 2);
 decoded_msg = zeros(row_total, msg_col_num);
-
 % 逐组完成译码
 for code_idx = 1 : row_total
     % 批量计算当前接收码字与所有标准码字的汉明距离
