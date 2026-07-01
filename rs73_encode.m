@@ -6,13 +6,16 @@ function code = rs73_encode(msg, m, n, k)
 %   m / n / k : RS码参数，本函数固定适配RS(7,3)
 % 输出参数
 %   code   : 码字矩阵，每行1组n维系统码字，信息位在前、校验位在后
+
 % RS(7,3)固定生成多项式系数
 gen_poly = [1, 7, 6, 1, 6];
 poly_len = length(gen_poly);
+
 % 获取输入信息总组数（修复语法错误，添加[]）
 [row_total, ~] = size(msg);
 % 预分配输出码字内存
 code = zeros(row_total, n);
+
 % 逐行完成每组信息的编码运算
 for data_idx = 1 : row_total
     % 信息多项式左移 (n-k) 位，低位补0，预留校验位空间
